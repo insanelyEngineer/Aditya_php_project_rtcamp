@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting</title>
+    <style>
+      body{
+        background-color:#444138;
+      }
+      
+      div{
+        background-color:#e98d04;
+        color:#f3f3f3;
+        font-size:20px;
+        text-align:center;
+      }</style>
+</head>
+<body>
+    <div>Time left = <span id="timer"></span></div>
+    <script>document.getElementById('timer').innerHTML =
+        05 + ":" + 01;
+      startTimer();
+      
+      
+      function startTimer() {
+        var presentTime = document.getElementById('timer').innerHTML;
+        var timeArray = presentTime.split(/[:]+/);
+        var m = timeArray[0];
+        var s = checkSecond((timeArray[1] - 1));
+        if(s==59){m=m-1}
+        if(m<0){
+          return
+        }
+        document.getElementById('timer').innerHTML =
+          m + ":" + s;
+        console.log(m)
+        setTimeout(startTimer, 1000);
+        if(m==0&&s==1){
+            window.location.replace("comic_sender.php");
+        }
+      }
+      
+      function checkSecond(sec) {
+        if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+        if (sec < 0) {sec = "59"};
+        return sec;
+      }
+      </script>
+</body>
+</html>
